@@ -16,14 +16,12 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
 
-      # 安装 rust
-      - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-
       # 安装 mdbook-mermaid
       - name: Install mdbook-mermaid
         run: |
-          cargo install mdbook-mermaid
+          MERMAID_VERSION="0.15.0"  # 指定版本
+          curl -L https://github.com/badboy/mdbook-mermaid/releases/download/v${MERMAID_VERSION}/mdbook-mermaid-v${MERMAID_VERSION}-x86_64-unknown-linux-gnu.tar.gz | tar xvz
+          sudo mv mdbook-mermaid /usr/local/bin/
 
       # 安装 mdbook-mergecells
       - name: Install mdbook-mergecells
@@ -37,8 +35,6 @@ jobs:
 
       # 部署
       - name: Deploy to CFWorker
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
