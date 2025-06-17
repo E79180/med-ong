@@ -33,6 +33,3 @@ jobs:
         with:
           wranglerVersion: 4.20.0
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          preCommands: |
-            ls
-            npm install
