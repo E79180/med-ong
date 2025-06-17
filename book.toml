@@ -1,0 +1,13 @@
+[book]
+authors = ["gitee.com/E79180"]
+language = "zh"
+multilingual = true
+src = "src"
+title = "妇产科学"
+
+[preprocessor]
+
+[preprocessor.mergecells]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
