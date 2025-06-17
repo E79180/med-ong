@@ -16,6 +16,15 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
 
+      # 安装 rust
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      # 安装 mdbook-mermaid
+      - name: Install mdbook-mermaid
+        run: |
+          cargo install mdbook-mermaid
+
       # 安装 mdbook-mergecells
       - name: Install mdbook-mergecells
         run: |
@@ -24,7 +33,6 @@ jobs:
       # 构建文档
       - name: Build doc
         run: |
-          export PATH=$PATH:$HOME/go/bin
           mdbook build -d public
 
       # 部署
